@@ -5,11 +5,13 @@ import 'package:tddlearning/domain/repositories/weather_repository.dart';
 import 'package:tddlearning/domain/usecases/get_current_weather.dart';
 import 'package:tddlearning/presentation/bloc/weather_bloc.dart';
 import 'package:http/http.dart' as http;
+import 'package:tddlearning/presentation/cubit/weather_cubit.dart';
 
 final locator = GetIt.instance;
 
 void setupLocator() {
   locator.registerFactory(() => WeatherBloc(locator()));
+  locator.registerFactory(() => WeatherCubit(locator()));
 
   locator.registerLazySingleton(() => GetCurrentWeatherUseCase(locator()));
 
