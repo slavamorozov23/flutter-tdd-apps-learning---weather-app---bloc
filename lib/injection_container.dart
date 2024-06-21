@@ -1,11 +1,11 @@
 import 'package:get_it/get_it.dart';
-import 'package:tddlearning/data/data_source/remote_data_source.dart';
-import 'package:tddlearning/data/repositories/weather_repository_impl.dart';
-import 'package:tddlearning/domain/repositories/weather_repository.dart';
-import 'package:tddlearning/domain/usecases/get_current_weather.dart';
-import 'package:tddlearning/presentation/bloc/weather_bloc.dart';
+import 'data/data_source/remote_data_source.dart';
+import 'data/repositories/weather_repository_impl.dart';
+import 'domain/repositories/weather_repository.dart';
+import 'domain/usecases/get_current_weather.dart';
+import 'presentation/bloc/weather_bloc.dart';
 import 'package:http/http.dart' as http;
-import 'package:tddlearning/presentation/cubit/weather_cubit.dart';
+import 'presentation/cubit/weather_cubit.dart';
 
 final locator = GetIt.instance;
 

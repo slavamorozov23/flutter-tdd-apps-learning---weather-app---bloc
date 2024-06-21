@@ -1,14 +1,17 @@
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-import 'package:tddlearning/domain/entities/weather.dart';
-import 'package:tddlearning/domain/usecases/get_current_weather.dart';
+import '../../domain/entities/weather.dart';
+import '../../domain/usecases/get_current_weather.dart';
 
 part 'weather_state.dart';
 
-class WeatherCubit extends Cubit<WeatherState> {
+class WeatherCubit extends HydratedCubit<WeatherState> {
   final GetCurrentWeatherUseCase _getCurrentWeatherUseCase;
+
   WeatherCubit(this._getCurrentWeatherUseCase) : super(WeatherEmpty());
 
   void cityChanged(String cityName) async {
@@ -17,6 +20,7 @@ class WeatherCubit extends Cubit<WeatherState> {
     result.fold((failure) {
       emit(WeatherLoadFailure(failure.message));
     }, (data) {
+      log('кубит загрузил данные!');
       emit(WeatherLoaded(data));
     });
   }
@@ -28,5 +32,20 @@ class WeatherCubit extends Cubit<WeatherState> {
       cityChanged(cityName);
       return stream;
     });
+  }
+
+  @override
+  WeatherState? fromJson(Map<String, dynamic> json) {
+    try {
+      final state = WeatherState.fromMap(json);
+      return state;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  @override
+  Map<String, dynamic>? toJson(WeatherState state) {
+    return state.toMap();
   }
 }

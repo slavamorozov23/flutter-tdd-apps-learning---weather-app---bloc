@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tddlearning/presentation/bloc/weather_bloc.dart';
+import '../bloc/weather_bloc.dart';
 
 import '../../core/constants/constants.dart';
 
@@ -43,7 +43,7 @@ class WeatherPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            state.result.cityName,
+                            state.weather.cityName,
                             style: const TextStyle(
                               fontSize: 22.0,
                             ),
@@ -51,7 +51,7 @@ class WeatherPage extends StatelessWidget {
                           Image(
                             image: NetworkImage(
                               Urls.weatherIcon(
-                                state.result.iconCode,
+                                state.weather.iconCode,
                               ),
                             ),
                           ),
@@ -59,7 +59,7 @@ class WeatherPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 8.0),
                       Text(
-                        '${state.result.main} | ${state.result.description}',
+                        '${state.weather.main} | ${state.weather.description}',
                         style: const TextStyle(
                           fontSize: 16.0,
                           letterSpacing: 1.2,
@@ -88,7 +88,7 @@ class WeatherPage extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                state.result.temperature.toString(),
+                                state.weather.temperature.toString(),
                                 style: const TextStyle(
                                   fontSize: 16.0,
                                   letterSpacing: 1.2,
@@ -111,7 +111,7 @@ class WeatherPage extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                state.result.pressure.toString(),
+                                state.weather.pressure.toString(),
                                 style: const TextStyle(
                                     fontSize: 16.0,
                                     letterSpacing: 1.2,
@@ -133,7 +133,7 @@ class WeatherPage extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                state.result.humidity.toString(),
+                                state.weather.humidity.toString(),
                                 style: const TextStyle(
                                   fontSize: 16.0,
                                   letterSpacing: 1.2,

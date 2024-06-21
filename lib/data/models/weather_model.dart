@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:tddlearning/domain/entities/weather.dart';
+import '../../domain/entities/weather.dart';
 
 class WeatherModel extends WeatherEntity {
   const WeatherModel(
@@ -21,6 +19,7 @@ class WeatherModel extends WeatherEntity {
       pressure: json['main']['pressure'],
       humidity: json['main']['humidity']);
 
+  @override
   Map<String, dynamic> toJson() => {
         'name': cityName,
         'weather': [

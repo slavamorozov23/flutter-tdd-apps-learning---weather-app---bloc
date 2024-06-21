@@ -30,7 +30,7 @@ void main() {
   const testCityName = 'New York';
 
   test('проверка изначального состояния блок', () {
-    expect(weatherBloc.state, WeatherEmpty());
+    expect(weatherBloc.state, const WeatherEmpty());
   });
 
   blocTest<WeatherBloc, WeatherState>(
@@ -42,7 +42,7 @@ void main() {
     },
     act: (bloc) => bloc.add(const OnCityChanged(testCityName)),
     wait: const Duration(milliseconds: 500),
-    expect: () => [WeatherLoading(), const WeatherLoaded(testWeather)],
+    expect: () => [const WeatherLoading(), const WeatherLoaded(testWeather)],
   );
 
   blocTest<WeatherBloc, WeatherState>(
@@ -56,7 +56,7 @@ void main() {
     act: (bloc) => bloc.add(const OnCityChanged(testCityName)),
     wait: const Duration(milliseconds: 500),
     expect: () => [
-      WeatherLoading(),
+      const WeatherLoading(),
       const WeatherLoadFailure('Ошибка обращения к серверу (ServerException)')
     ],
   );

@@ -1,14 +1,14 @@
 import 'package:dartz/dartz.dart';
 
-import 'package:tddlearning/core/error/failure.dart';
-import 'package:tddlearning/domain/entities/weather.dart';
-import 'package:tddlearning/domain/repositories/weather_repository.dart';
+import '../../core/error/failure.dart';
+import '../entities/weather.dart';
+import '../repositories/weather_repository.dart';
 
 class GetCurrentWeatherUseCase {
   final WeatherRepository weatherRepository;
 
   GetCurrentWeatherUseCase(
-     this.weatherRepository,
+    this.weatherRepository,
   );
 
   Future<Either<Failure, WeatherEntity>> execute(String cityName) {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tddlearning/presentation/cubit/weather_cubit.dart';
 
 import '../../core/constants/constants.dart';
+import '../cubit/weather_cubit.dart';
 
 class WeatherCubitPage extends StatelessWidget {
   const WeatherCubitPage({super.key});

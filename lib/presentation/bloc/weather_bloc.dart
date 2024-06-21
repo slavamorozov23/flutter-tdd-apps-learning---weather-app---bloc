@@ -1,7 +1,9 @@
-import 'package:bloc/bloc.dart';
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
-import 'package:tddlearning/domain/entities/weather.dart';
-import 'package:tddlearning/domain/usecases/get_current_weather.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import '../../domain/entities/weather.dart';
+import '../../domain/usecases/get_current_weather.dart';
 import 'package:rxdart/rxdart.dart';
 
 part 'weather_event.dart';
@@ -9,9 +11,10 @@ part 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final GetCurrentWeatherUseCase _getCurrentWeatherUseCase;
-  WeatherBloc(this._getCurrentWeatherUseCase) : super(WeatherEmpty()) {
+
+  WeatherBloc(this._getCurrentWeatherUseCase) : super(const WeatherEmpty()) {
     on<OnCityChanged>((event, emit) async {
-      emit(WeatherLoading());
+      emit(const WeatherLoading());
       final result = await _getCurrentWeatherUseCase.execute(event.cityName);
       result.fold((failure) {
         emit(WeatherLoadFailure(failure.message));

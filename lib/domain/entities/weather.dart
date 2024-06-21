@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 
 class WeatherEntity extends Equatable {
@@ -31,4 +33,31 @@ class WeatherEntity extends Equatable {
       humidity,
     ];
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'cityName': cityName,
+      'main': main,
+      'description': description,
+      'iconCode': iconCode,
+      'temperature': temperature,
+      'pressure': pressure,
+      'humidity': humidity,
+    };
+  }
+
+  factory WeatherEntity.fromMap(Map<String, dynamic> map) {
+    return WeatherEntity(
+      cityName: map['cityName'] ?? '',
+      main: map['main'] ?? '',
+      description: map['description'] ?? '',
+      iconCode: map['iconCode'] ?? '',
+      temperature: map['temperature']?.toDouble() ?? 0.0,
+      pressure: map['pressure']?.toInt() ?? 0,
+      humidity: map['humidity']?.toInt() ?? 0,
+    );
+  }
+
+  factory WeatherEntity.fromJson(String source) =>
+      WeatherEntity.fromMap(json.decode(source));
 }

@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:tddlearning/core/error/exception.dart';
-import 'package:tddlearning/core/error/failure.dart';
-import 'package:tddlearning/data/data_source/remote_data_source.dart';
-import 'package:tddlearning/domain/entities/weather.dart';
-import 'package:tddlearning/domain/repositories/weather_repository.dart';
+import '../../core/error/exception.dart';
+import '../../core/error/failure.dart';
+import '../data_source/remote_data_source.dart';
+import '../../domain/entities/weather.dart';
+import '../../domain/repositories/weather_repository.dart';
 
 class WeatherRepositoryImpl extends WeatherRepository {
   final WeatherRemoteDataSource weatherRemoteDataSource;

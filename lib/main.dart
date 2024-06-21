@@ -1,13 +1,24 @@
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tddlearning/injection_container.dart';
-import 'package:tddlearning/presentation/bloc/weather_bloc.dart';
-import 'package:tddlearning/presentation/cubit/weather_cubit.dart';
-import 'package:tddlearning/presentation/pages/weather_cubit_page.dart';
-import 'package:tddlearning/presentation/pages/weather_page.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
+import 'injection_container.dart';
+import 'presentation/bloc/weather_bloc.dart';
+import 'presentation/cubit/weather_cubit.dart';
+import 'presentation/pages/weather_cubit_page.dart';
+import 'presentation/pages/weather_page.dart';
 
-void main() {
+void main() async {
   setupLocator();
+  WidgetsFlutterBinding.ensureInitialized();
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorage.webStorageDirectory
+        : await getTemporaryDirectory(),
+  );
   runApp(const MainApp());
 }
 
@@ -47,6 +58,11 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
